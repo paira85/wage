@@ -1,0 +1,166 @@
+3. DataCollection
+
+데이터 컬렉션을 관리하는 공간
+
+기본적으로 DataMap과 DataList만 알고있자
+
+DataMap : 단건의 객체 처리
+
+DataList : 다건의 객체 처리
+
+​
+
+4. Submission
+
+통신을 담당하는 공간
+
+​
+
+5. Source
+
+앞에서 1~4가지에서 만들어진 것이 소스로 보인다
+
+소스를 직접 코딩해도 되지만
+
+그러다 중요한 소스를 지우거나 하는건 조심..!
+
+테이블 선택 후 
+
+(테이블 선택하는 방법! 테이블 선택도 어려움 ㅋㅋ)
+
+
+* Button => Trigger
+
+* div => group
+
+* toggle => Accordion
+
+* iFrame => WFrame
+
+iFrame의 계속되는 메모리 낭비와 속도저하를 줄이기 위해 WFrame사용
+
+* 한페이지에 여러 페이지가 보이게 하는 것 => windowcontainer 사용
+
+--> widgetcontainer도 있다 (이게 더 나은 듯)
+
+* textBox의 width, height 값을 주지 않으면 
+
+디폴트로 width는 100%, height는 글씨 높이만큼 자동 고정된다.
+
+* selectBox > 하단에 choose option > $blank 로 주면 공백으로 표시
+
+* inputCalendar 속성의 validCheck : true로 할 경우, 잘못된 날짜가 입력되었을 경우 알아서 valid check를 해줌
+
+* 웹스퀘어 index는 0부터 시작
+
+* $p. 을 사용하면 웹스퀘어에서 지원해주는 util을 사용할 수 있음
+
+웹스퀘어에서는 Date를 안쓰고 현재날짜를 가져올 수 있음 $p.getCurrentServerDate("yyyyMMdd HHmmss") <대소문자가림>
+
+
+--------------------submission------------------------------------
+우클릭해서 submission 추가를 클릭해도 좋고
+
+더블클릭해도 된다
+
+
+id : 고유의 아이디값
+
+reference : request 값
+
+target : response 값
+
+** singleMode는 json에서 아이디 없이 데이터만 주고받을때만 체크!
+
+url Action : 내가 연결할 서브밋주소! 
+
+mode : asyn를 주로 쓴다.
+
+method : post
+
+media type : application/json
+
+encoding : utf-8
+
+instance : 잘 안씀 (옛날버전)
+
+replace : 잘안씀 (옛날버전)
+
+abortTrigger : 잘안씀 (테스트하기위해 통신끊을때)
+
+Error Handler : 통신구간 자체 정상이지만 결과중 에러가 있을때 발생
+
+Custom Handler : 요청 보내기 직전 <preSubmitFunction을 주로 사용>
+
+Process Message : 통신되는 중 alert으로 보여줌
+
+
+submit : submit이 수행되기 직전
+
+submit-done : 콜백함수역할 asyn를 사용 후 1번함수 실행 후 2번 실행하게 submit-done으로 제어
+
+submit-error : 결과가 에러날 경우
+
+​
+
+** request 데이터 값을 넣는 방법
+--------------------submission	request------------------------------------
+1. DataCollection에서 해당 컬럼 클릭 후 property에서 defaultValue값 설정
+
+2. DataCollection에서 하단 Data 값 설정 (use data 클릭)
+
+3. submission -> submit에서 스크립트 추가 후 스크립트에서 
+
+DataCollection에서 생성한 해당이름.set("값 넣어줄 컬럼명", "데이터값");
+[출처] WebSquare5(웹스퀘어5) 교육 1일차|작성자 솔솔
+
+
+그룸 반복처리
+https://www.youtube.com/watch?v=-_ikdB_Hls4
+
+그리드
+https://www.youtube.com/watch?v=dKt-aErQgbg
+
+웹스퀘어 컴포넌트
+https://www.youtube.com/watch?v=J-IlB-HsZ60
+
+--------------------
+res/map/vector/map[ age = 17 ]/number
+res/map/vector/map[ @age = 17 ]/number
+<xf:instance>
+ <data xmlns="">
+  <res>
+   <map>
+    <vector>
+     <map index="0">
+      <number value="one"> 1</number>
+      <dept value="insa"> 인사</dept>
+      <age value="17"> 17</age>
+     </map>
+     <map index="1">
+      <number value="tow"> 2</number>
+      <dept value="insa"> 홍보</dept>
+      <age value="24"> 24</age>
+     </map>
+    </vector>
+   </map>
+  </res>
+ </data>
+</xf::instance>
+
+
+--------------------
+options.headerExist = "1" // 헤더의존재여부
+options.startRowIndex  = "1" // 데이터시작
+options.startcolumnIndex  = "1" // 로우
+options.sheetNo  = "0" // 시트번호
+options.append  = "1" // 0 append 안함, 1 append 함
+options.append  = "1" // 0 append 안함, 1 append 함
+grid.advancedExcelUpload(options)
+
+var doc = WebSquare.xml.parse("<map />");
+WebSquare.xml.setValue(doc, "map/name" , "1");
+WebSquare.xml.setValue(doc, "map/job" , "2");
+WebSquare.xml.setValue(doc, "map/age" , "3");
+
+alert(WebSquare.xml.indext( doc ) );
